@@ -32,14 +32,16 @@ fun OneQuoteApp(
         // Page content
         val selectedPage = appState.navigation.selectedPage
         when (selectedPage.title) {
-            "Page 1" -> {
+            "All quotes" -> {
                 TempContent(selectedPage.color)
             }
-            "Page 2" -> {
-                TempContent(selectedPage.color)
-                TempContent(selectedPage.color)
-            }
-            "Page 3" -> {
+            "Daily quote" -> DailyQuoteScreen(
+                quote = appState.quoteOfTheDay,
+                onFavoriteClicked = {
+                    // todo handle onClick
+                }
+            )
+            "Favorites" -> {
                 TempContent(selectedPage.color)
                 TempContent(selectedPage.color)
                 TempContent(selectedPage.color)
