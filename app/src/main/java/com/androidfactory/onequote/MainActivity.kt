@@ -20,9 +20,11 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.androidfactory.onequote.ui.theme.OneQuoteTheme
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.androidfactory.onequote.navigation.HeaderNavigation
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.flow.map
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
