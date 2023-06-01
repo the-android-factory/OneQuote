@@ -7,18 +7,25 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.androidfactory.onequote.navigation.HeaderNavigation
 
 @Composable
 fun OneQuoteApp(
+    lifecycleOwner: LifecycleOwner = LocalLifecycleOwner.current,
     viewModel: MainActivityViewModel = viewModel()
 ) {
     val appState by viewModel.appState.collectAsStateWithLifecycle()
 
-    viewModel.fetchQuoteOfTheDay()
+    PerformOnLifecycle(
+        lifecycleOwner = lifecycleOwner,
+        onStart = { viewModel.fetchQuoteOfTheDay() },
+        onResume = { /* Do something here */ }
+    )
 
     Column(
         modifier = Modifier
