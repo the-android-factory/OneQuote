@@ -45,10 +45,11 @@ fun OneQuoteApp(
                 TempContent(selectedPage.color)
             }
             "Daily quote" -> DailyQuoteScreen(
-                quote = appState.quoteOfTheDay,
+                networkOperation = appState.quoteOfTheDay,
                 onFavoriteClicked = {
                     // todo handle onClick
-                }
+                },
+                onRefresh = { viewModel.fetchQuoteOfTheDay() }
             )
             "Favorites" -> {
                 TempContent(selectedPage.color)

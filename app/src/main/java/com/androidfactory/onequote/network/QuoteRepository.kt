@@ -10,8 +10,13 @@ class QuoteRepository @Inject constructor(
     private val quoteMapper: QuoteMapper
 ) {
 
-    suspend fun getQuoteOfTheDay(): AppState.Quote? {
-        val networkQuote: NetworkQuote? = quoteService.getQuoteOfTheDay().body()?.firstOrNull()
-        return networkQuote?.let { quoteMapper.buildFrom(it) }
+    suspend fun getQuoteOfTheDay(): NetworkOperation<AppState.Quote> {
+        return quoteService.getQuoteOfTheDay().run {
+            if (isSuccessful) {
+                NetworkOperation.Success(data = quoteMapper.buildFrom(body()!!.first()))
+            } else {
+                NetworkOperation.Failure(reason = "Unable to fetch quote of the day")
+            }
+        }
     }
 }

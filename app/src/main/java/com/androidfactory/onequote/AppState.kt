@@ -1,6 +1,7 @@
 package com.androidfactory.onequote
 
 import androidx.compose.ui.graphics.Color
+import com.androidfactory.onequote.network.NetworkOperation
 
 /**
  * Represents the overall state of the app. This data is the source of truth
@@ -8,7 +9,7 @@ import androidx.compose.ui.graphics.Color
  */
 data class AppState(
     val navigation: Navigation,
-    val quoteOfTheDay: Quote
+    val quoteOfTheDay: NetworkOperation<Quote> = NetworkOperation.Loading()
 ) {
     data class Quote(
         val displayText: String,
@@ -34,11 +35,6 @@ data class AppState(
                 navigation = Navigation(
                     navItems = pages,
                     selectedPage = pages[1]
-                ),
-                quoteOfTheDay = Quote(
-                    displayText = "Nothing good ever comes of violence.",
-                    author = "Martin Luther",
-                    isFavorite = true
                 )
             )
         }
