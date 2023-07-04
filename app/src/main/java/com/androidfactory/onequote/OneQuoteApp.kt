@@ -23,7 +23,10 @@ fun OneQuoteApp(
 
     PerformOnLifecycle(
         lifecycleOwner = lifecycleOwner,
-        onStart = { viewModel.fetchQuoteOfTheDay() },
+        onStart = {
+            viewModel.fetchQuoteOfTheDay()
+            viewModel.fetchAllQuotes()
+        },
         onResume = { /* Do something here */ }
     )
 
@@ -42,7 +45,12 @@ fun OneQuoteApp(
         val selectedPage = appState.navigation.selectedPage
         when (selectedPage.title) {
             "All quotes" -> {
-                TempContent(selectedPage.color)
+                AllQuotesScreen(
+                    allQuotesOperation = appState.allQuotes,
+                    onFavoriteClicked = {
+                        // todo handle onClick
+                    }
+                )
             }
             "Daily quote" -> DailyQuoteScreen(
                 networkOperation = appState.quoteOfTheDay,

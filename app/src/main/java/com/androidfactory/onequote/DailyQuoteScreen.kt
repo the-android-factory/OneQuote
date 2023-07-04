@@ -102,7 +102,7 @@ private fun DailyQuoteContent(
             .fillMaxWidth()
             .aspectRatio(1f)
             .padding(horizontal = 32.dp)
-            .background(color = Purple, shape = MaterialTheme.shapes.large)
+            .background(color = DarkPurple, shape = MaterialTheme.shapes.large)
             .clip(shape = MaterialTheme.shapes.large)
     ) {
         Text(
@@ -120,10 +120,10 @@ private fun DailyQuoteContent(
             modifier = Modifier
                 .align(Alignment.BottomCenter)
                 .fillMaxWidth()
-                .background(color = Color.Black)
+                .background(color = Purple)
                 .padding(horizontal = 16.dp, vertical = 8.dp),
             fontSize = 22.sp,
-            color = Color.White,
+            color = Color.Black,
             fontWeight = FontWeight.Normal,
             textAlign = TextAlign.End
         )
@@ -133,8 +133,8 @@ private fun DailyQuoteContent(
                 .padding(start = 8.dp, bottom = 16.dp)
                 .size(60.dp)
                 .align(Alignment.BottomStart)
-                .background(color = Color.Black, shape = RoundedCornerShape(50))
-                .border(width = 1.dp, color = Color.White, shape = RoundedCornerShape(50))
+                .background(color = Purple, shape = RoundedCornerShape(50))
+                .border(width = 2.dp, color = Color.Black, shape = RoundedCornerShape(50))
                 .clip(RoundedCornerShape(50))
                 .clickable { onClick?.invoke() }
         ) {
@@ -142,7 +142,7 @@ private fun DailyQuoteContent(
                 imageVector = if (isFavorite) Icons.Default.Favorite else Icons.Default.FavoriteBorder,
                 contentDescription = "Favorite Icon",
                 modifier = Modifier.align(Alignment.Center),
-                tint = Color.White
+                tint = Color.Black
             )
         }
     }

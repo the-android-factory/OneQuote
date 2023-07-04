@@ -9,7 +9,8 @@ import com.androidfactory.onequote.network.NetworkOperation
  */
 data class AppState(
     val navigation: Navigation,
-    val quoteOfTheDay: NetworkOperation<Quote> = NetworkOperation.Loading()
+    val quoteOfTheDay: NetworkOperation<Quote> = NetworkOperation.Loading(),
+    val allQuotes: NetworkOperation<List<Quote>> = NetworkOperation.Loading()
 ) {
     data class Quote(
         val displayText: String,

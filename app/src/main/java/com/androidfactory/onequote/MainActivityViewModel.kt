@@ -36,4 +36,10 @@ class MainActivityViewModel @Inject constructor(
         _appState.update { return@update it.copy(quoteOfTheDay = NetworkOperation.Loading()) }
         _appState.update { return@update it.copy(quoteOfTheDay = quoteRepository.getQuoteOfTheDay()) }
     }
+
+    fun fetchAllQuotes() = viewModelScope.launch {
+        _appState.update { return@update it.copy(allQuotes = NetworkOperation.Loading()) }
+        delay(2500)
+        _appState.update { return@update it.copy(allQuotes = quoteRepository.getAllQuotes()) }
+    }
 }
