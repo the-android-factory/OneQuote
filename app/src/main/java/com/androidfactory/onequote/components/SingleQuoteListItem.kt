@@ -26,10 +26,11 @@ import com.androidfactory.onequote.ui.theme.Purple
 @Composable
 fun SingleQuoteListItem(
     quote: AppState.Quote,
-    onFavoriteClicked: () -> Unit
+    onFavoriteClicked: () -> Unit,
+    modifier: Modifier = Modifier
 ) {
     Column(
-        modifier = Modifier
+        modifier = modifier
             .background(color = DarkPurple, shape = MaterialTheme.shapes.large)
             .clip(MaterialTheme.shapes.large)
     ) {
