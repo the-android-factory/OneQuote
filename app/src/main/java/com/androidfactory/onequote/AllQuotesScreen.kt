@@ -22,6 +22,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.ArrowBack
 import androidx.compose.material.icons.rounded.ArrowForward
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -137,10 +138,14 @@ private fun AllQuotesDisplay(
     onFavoriteClicked: (AppState.Quote) -> Unit
 ) {
     var currentSortOrder by remember { mutableStateOf<SortOrder>(SortOrder.Shortest) }
-    val sortedQuotes = when (currentSortOrder) {
-        SortOrder.Author -> quotes.sortedBy { it.author }
-        SortOrder.Longest -> quotes.sortedByDescending { it.displayText.length }
-        SortOrder.Shortest -> quotes.sortedBy { it.displayText.length }
+    val sortedQuotes by remember {
+        derivedStateOf {
+            when (currentSortOrder) {
+                SortOrder.Author -> quotes.sortedBy { it.author }
+                SortOrder.Longest -> quotes.sortedByDescending { it.displayText.length }
+                SortOrder.Shortest -> quotes.sortedBy { it.displayText.length }
+            }
+        }
     }
 
     LazyColumn(
