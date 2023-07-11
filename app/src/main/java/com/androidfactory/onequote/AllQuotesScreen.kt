@@ -139,7 +139,7 @@ private fun AllQuotesDisplay(
     var currentSortOrder by remember { mutableStateOf<SortOrder>(SortOrder.Shortest) }
     val sortedQuotes = when (currentSortOrder) {
         SortOrder.Author -> quotes.sortedBy { it.author }
-        SortOrder.Longest -> quotes.sortedBy { it.displayText.length }.reversed()
+        SortOrder.Longest -> quotes.sortedByDescending { it.displayText.length }
         SortOrder.Shortest -> quotes.sortedBy { it.displayText.length }
     }
 
